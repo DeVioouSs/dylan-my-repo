@@ -15,7 +15,7 @@ jobs:
       
     - name: Build and Generate Artifacts
       run: |
-        # Compile the source code and generate artificats
+        # Compile the source code and generate artifacts
         
   test:
     needs: build
