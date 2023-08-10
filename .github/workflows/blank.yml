@@ -41,15 +41,4 @@ jobs:
       
     - name: Deploy to Staging
       run: |
-        # Deploy the application to a staging environment
-        
-notify-failure:
-    needs: [build, test, deploy]
-    
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Notify Failure
-      if: ${{ failure() }}
-      run: |
-        # Send a notification about the failure
+        # Deploy the application to a staging environment    
