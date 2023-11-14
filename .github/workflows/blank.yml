@@ -57,7 +57,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         with:
           status: failure
-          text: "Build or deployment failed for the ${{ github.com/DeVioouSs/dylan-my-repo.git }} repository on branch ${{ github.ref }}."
+          text: "Build or deployment failed for the ${{ github.repository }} repository on branch ${{ github.ref }}."
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
                   
