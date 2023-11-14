@@ -45,23 +45,22 @@ jobs:
       run: |
         # Deploy the application to a staging environment
 
-        - name: Notify on Failure
+  notify:
+    runs-on: ubuntu-latest
 
-          if: failure()
+    needs: deploy
 
-             uses: actions/github-script@v0.9.0
+    if: failure()
 
-             with:
-               script: |
-                const issueTitle = 'Deployment Failed';
-                const issueBody = 'There was a failure in deploying.';
-                github.issues.create({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  title: issueTitle,
-                  body: issueBody
-                  });,
-
+    steps:
+      - name: Notify on Failure
+        uses: rtCamp/action-slack-notify@v2
+        with:
+          status: failure
+          text: "Build or deployment failed for the ${{ github.repository }} repository on branch ${{ github.ref }}."
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+                  
 
 
 
